@@ -9,6 +9,4 @@ loop do
   json_response = { :random => rand(1..100) }.to_json
   http_response = "HTTP/1.1 200\r\n\r\n#{ json_response }"
   client.puts(http_response)
-
-  client.close
 end
