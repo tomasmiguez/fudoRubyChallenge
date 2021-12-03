@@ -5,13 +5,10 @@ socket = TCPServer.new(8085)
 
 loop do
   client = socket.accept
-
-  while (line = client.gets) && line.chomp != ''
-    print line
-  end
-
-  json_response = { :random => rand(1..100) }.to_json
-  http_response = "HTTP/1.1 200\r\n\r\n#{ json_response }"
+  
+  client.gets
+  
+  http_response = "HTTP/1.1 200\r\n\r\n#{ { :random => rand(1..100) }.to_json }"
   client.puts(http_response)
 
   client.close
